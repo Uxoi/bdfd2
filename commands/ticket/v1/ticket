@@ -1,7 +1,7 @@
 trigger: <your_prefix>ticket
 
 $nomention
-$onlyForIDs[$botOwnerID;]
+$onlyPerms[manageserver;]
 $color[5865f2]
 $onlyIf[$guildID!=;]
 $jsonParse[$getUserVar[systems;$botID]]
