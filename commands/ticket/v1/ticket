@@ -1,0 +1,26 @@
+trigger: <your_prefix>ticket
+
+$nomention
+$onlyForIDs[$botOwnerID;]
+$color[5865f2]
+$onlyIf[$guildID!=;]
+$jsonParse[$getUserVar[systems;$botID]]
+$if[$or[$getVar[lang;$authorID]==es;$getVar[lang;$authorID]==]==true]
+$description[Un sistema de tickets eficiente permite a los miembros de tu servidor abrir un canal dedicado para solicitar ayuda sobre cualquier tema.
+
+Para comenzar con la configuración, utiliza los botones de abajo.]
+$addButton[no;editembed-$authorID;Editar Mensaje;primary]
+$addButton[no;editroles-$authorID;Editar Roles;secondary]
+$addButton[no;ñ;Activado? $json[ticket;active];$replaceText[$replaceText[$json[ticket;active];true;success];false;danger];yes]
+$addButton[no;sendTicket-$authorID;Enviar;primary]
+$addButton[yes;editoptions-$authorID;Editar opciones;primary]
+$elseif[$getVar[lang;$authorID]==en]
+$description[An efficient ticket system allows the members of your server to open a dedicated channel to request help on any topic.
+
+To start the setup, use the buttons below.]
+$addButton[no;editembed-$authorID;Edit Message;primary]
+$addButton[no;editroles-$authorID;Edit Roles;secondary]
+$addButton[no;ñ;Activated? $json[ticket;active];$replaceText[$replaceText[$json[ticket;active];true;success];false;danger];yes]
+$addButton[no;sendTicket-$authorID;Send;primary]
+$addButton[yes;editoptions-$authorID;Edit options;primary]
+$endif

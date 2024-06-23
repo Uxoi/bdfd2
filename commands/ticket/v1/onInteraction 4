@@ -1,0 +1,243 @@
+trigger: $onInteraction[support]
+
+$nomention
+$jsonParse[$getUserVar[systems;$botID]]
+$if[$message==id-1]
+$if[$or[$getVar[lang;$authorID]==es;$getVar[lang;$authorID]==]==true]
+$var[j;$json[ticket;options]]
+$var[r;$json[ticket;roles]]
+$var[count;$jsonArrayCount[ticket;roles]]
+$var[tickets;$json[ticket;count]] $var[n;0] $var[color;$json[ticket;color]]
+$async[a]
+$createChannel[ticket-$var[tickets];text]
+$eval[$repeatMessage[$var[count];%{DOL}%textSplit[%{DOL}%json[ticket\;roles\;%{DOL}%var[n\]\]\;"\]
+%{DOL}%editChannelPerms[%{DOL}%findChannel[ticket-%{DOL}%var[tickets\]\]\;%{DOL}%findRole[@everyone\]\;-readmessages\]
+%{DOL}%editChannelPerms[%{DOL}%findChannel[ticket-%{DOL}%var[tickets\]\]\;%{DOL}%splitText[2\]\;+readmessages\]
+%{DOL}%var[n\;%{DOL}%sum[%{DOL}%var[n\]\;1\]\]]]
+$jsonSet[ticket;count;$sum[$json[ticket;count];1]]
+$setUserVar[systems;$jsonStringify;$botID]
+$jsonParse[$var[j]]
+$httpGet[https://edgabot.akiomae.com/AkioUsers/Seraph/jsonSearch?json=$url[encode;$jsonStringify]&search=id-1]
+$var[id;$sendEmbedMessage[$findChannel[ticket-$var[tickets]];<@$authorID>;Nuevo ticket;;Por favor espere pacientemente mientras algún staff lo atiende.
+
+**Información**
+>>> Creado por: [@$username[$authorID]\](https://discord.com/users/$authorID)
+Tema: $json[$httpResult[position];name];$var[color];;;;;;;;yes]]
+$useChannel[$findChannel[ticket-$var[tickets]]]
+$addButton[no;delete;Eliminar Ticket;danger;no;;$var[id]]
+$addButton[no;transcript;Transcribir ticket;secondary;no;;$var[id]]
+$endasync
+$await[a]
+$ephemeral
+Ticket creado. <#$findChannel[ticket-$var[tickets]]>
+$removeAllComponents
+$elseif[$getVar[lang;$authorID]==en]
+$var[j;$json[ticket;options]]
+$var[r;$json[ticket;roles]]
+$var[count;$jsonArrayCount[ticket;roles]]
+$var[tickets;$json[ticket;count]] 
+$var[n;0] 
+$var[color;$json[ticket;color]]
+$async[a]
+$createChannel[ticket-$var[tickets];text]
+$eval[$repeatMessage[$var[count];%{DOL}%textSplit[%{DOL}%json[ticket\;roles\;%{DOL}%var[n\]\]\;"\]
+%{DOL}%editChannelPerms[%{DOL}%findChannel[ticket-%{DOL}%var[tickets\]\]\;%{DOL}%findRole[@everyone\]\;-readmessages\]
+%{DOL}%editChannelPerms[%{DOL}%findChannel[ticket-%{DOL}%var[tickets\]\]\;%{DOL}%splitText[2\]\;+readmessages\]
+%{DOL}%var[n\;%{DOL}%sum[%{DOL}%var[n\]\;1\]\]]]
+$jsonSet[ticket;count;$sum[$json[ticket;count];1]]
+$setUserVar[systems;$jsonStringify;$botID]
+$jsonParse[$var[j]]
+$httpGet[https://edgabot.akiomae.com/AkioUsers/Seraph/jsonSearch?json=$url[encode;$jsonStringify]&search=id-1]
+$var[id;$sendEmbedMessage[$findChannel[ticket-$var[tickets]];<@$authorID>;New ticket;;Please wait patiently while a staff member assists you.
+
+**Information**
+>>> Created by: [@$username[$authorID]\](https://discord.com/users/$authorID)
+Topic: $json[$httpResult[position];name];$var[color];;;;;;;;yes]]
+$useChannel[$findChannel[ticket-$var[tickets]]]
+$addButton[no;delete;Delete Ticket;danger;no;;$var[id]]
+$addButton[no;transcript;Transcribe Ticket;secondary;no;;$var[id]]
+$endasync
+$await[a]
+$ephemeral
+Ticket created. <#$findChannel[ticket-$var[tickets]]>
+$removeAllComponents
+$endif
+$elseif[$message==id-2]
+$if[$or[$getVar[lang;$authorID]==es;$getVar[lang;$authorID]==]==true]
+$var[j;$json[ticket;options]]
+$var[r;$json[ticket;roles]]
+$var[count;$jsonArrayCount[ticket;roles]]
+$var[tickets;$json[ticket;count]] $var[n;0] $var[color;$json[ticket;color]]
+$async[a]
+$createChannel[ticket-$var[tickets];text]
+$eval[$repeatMessage[$var[count];%{DOL}%textSplit[%{DOL}%json[ticket\;roles\;%{DOL}%var[n\]\]\;"\]
+%{DOL}%editChannelPerms[%{DOL}%findChannel[ticket-%{DOL}%var[tickets\]\]\;%{DOL}%findRole[@everyone\]\;-readmessages\]
+%{DOL}%editChannelPerms[%{DOL}%findChannel[ticket-%{DOL}%var[tickets\]\]\;%{DOL}%splitText[2\]\;+readmessages\]
+%{DOL}%var[n\;%{DOL}%sum[%{DOL}%var[n\]\;1\]\]]]
+$jsonSet[ticket;count;$sum[$json[ticket;count];1]]
+$setUserVar[systems;$jsonStringify;$botID]
+$jsonParse[$var[j]]
+$httpGet[https://edgabot.akiomae.com/AkioUsers/Seraph/jsonSearch?json=$url[encode;$jsonStringify]&search=id-2]
+$var[id;$sendEmbedMessage[$findChannel[ticket-$var[tickets]];<@$authorID>;Nuevo ticket;;Por favor espere pacientemente mientras algún staff lo atiende.
+
+**Información**
+>>> Creado por: [@$username[$authorID]\](https://discord.com/users/$authorID)
+Tema: $json[$httpResult[position];name];$var[color];;;;;;;;yes]]
+$useChannel[$findChannel[ticket-$var[tickets]]]
+$addButton[no;delete;Eliminar Ticket;danger;no;;$var[id]]
+$addButton[no;transcript;Transcribir ticket;secondary;no;;$var[id]]
+$endasync
+$await[a]
+$ephemeral
+Ticket creado. <#$findChannel[ticket-$var[tickets]]>
+$removeAllComponents
+$elseif[$getVar[lang;$authorID]==en]
+$var[j;$json[ticket;options]]
+$var[r;$json[ticket;roles]]
+$var[count;$jsonArrayCount[ticket;roles]]
+$var[tickets;$json[ticket;count]] 
+$var[n;0] 
+$var[color;$json[ticket;color]]
+$async[a]
+$createChannel[ticket-$var[tickets];text]
+$eval[$repeatMessage[$var[count];%{DOL}%textSplit[%{DOL}%json[ticket\;roles\;%{DOL}%var[n\]\]\;"\]
+%{DOL}%editChannelPerms[%{DOL}%findChannel[ticket-%{DOL}%var[tickets\]\]\;%{DOL}%findRole[@everyone\]\;-readmessages\]
+%{DOL}%editChannelPerms[%{DOL}%findChannel[ticket-%{DOL}%var[tickets\]\]\;%{DOL}%splitText[2\]\;+readmessages\]
+%{DOL}%var[n\;%{DOL}%sum[%{DOL}%var[n\]\;1\]\]]]
+$jsonSet[ticket;count;$sum[$json[ticket;count];1]]
+$setUserVar[systems;$jsonStringify;$botID]
+$jsonParse[$var[j]]
+$httpGet[https://edgabot.akiomae.com/AkioUsers/Seraph/jsonSearch?json=$url[encode;$jsonStringify]&search=id-2]
+$var[id;$sendEmbedMessage[$findChannel[ticket-$var[tickets]];<@$authorID>;New ticket;;Please wait patiently while a staff member assists you.
+
+**Information**
+>>> Created by: [@$username[$authorID]\](https://discord.com/users/$authorID)
+Topic: $json[$httpResult[position];name];$var[color];;;;;;;;yes]]
+$useChannel[$findChannel[ticket-$var[tickets]]]
+$addButton[no;delete;Delete Ticket;danger;no;;$var[id]]
+$addButton[no;transcript;Transcribe Ticket;secondary;no;;$var[id]]
+$endasync
+$await[a]
+$ephemeral
+Ticket created. <#$findChannel[ticket-$var[tickets]]>
+$removeAllComponents
+$endif
+$elseif[$message==id-3]
+$if[$or[$getVar[lang;$authorID]==es;$getVar[lang;$authorID]==]==true]
+$var[j;$json[ticket;options]]
+$var[r;$json[ticket;roles]]
+$var[count;$jsonArrayCount[ticket;roles]]
+$var[tickets;$json[ticket;count]] $var[n;0] $var[color;$json[ticket;color]]
+$async[a]
+$createChannel[ticket-$var[tickets];text]
+$eval[$repeatMessage[$var[count];%{DOL}%textSplit[%{DOL}%json[ticket\;roles\;%{DOL}%var[n\]\]\;"\]
+%{DOL}%editChannelPerms[%{DOL}%findChannel[ticket-%{DOL}%var[tickets\]\]\;%{DOL}%findRole[@everyone\]\;-readmessages\]
+%{DOL}%editChannelPerms[%{DOL}%findChannel[ticket-%{DOL}%var[tickets\]\]\;%{DOL}%splitText[2\]\;+readmessages\]
+%{DOL}%var[n\;%{DOL}%sum[%{DOL}%var[n\]\;1\]\]]]
+$jsonSet[ticket;count;$sum[$json[ticket;count];1]]
+$setUserVar[systems;$jsonStringify;$botID]
+$jsonParse[$var[j]]
+$httpGet[https://edgabot.akiomae.com/AkioUsers/Seraph/jsonSearch?json=$url[encode;$jsonStringify]&search=id-3]
+$var[id;$sendEmbedMessage[$findChannel[ticket-$var[tickets]];<@$authorID>;Nuevo ticket;;Por favor espere pacientemente mientras algún staff lo atiende.
+
+**Información**
+>>> Creado por: [@$username[$authorID]\](https://discord.com/users/$authorID)
+Tema: $json[$httpResult[position];name];$var[color];;;;;;;;yes]]
+$useChannel[$findChannel[ticket-$var[tickets]]]
+$addButton[no;delete;Eliminar Ticket;danger;no;;$var[id]]
+$addButton[no;transcript;Transcribir ticket;secondary;no;;$var[id]]
+$endasync
+$await[a]
+$ephemeral
+Ticket creado. <#$findChannel[ticket-$var[tickets]]>
+$removeAllComponents
+$elseif[$getVar[lang;$authorID]==en]
+$var[j;$json[ticket;options]]
+$var[r;$json[ticket;roles]]
+$var[count;$jsonArrayCount[ticket;roles]]
+$var[tickets;$json[ticket;count]] 
+$var[n;0] 
+$var[color;$json[ticket;color]]
+$async[a]
+$createChannel[ticket-$var[tickets];text]
+$eval[$repeatMessage[$var[count];%{DOL}%textSplit[%{DOL}%json[ticket\;roles\;%{DOL}%var[n\]\]\;"\]
+%{DOL}%editChannelPerms[%{DOL}%findChannel[ticket-%{DOL}%var[tickets\]\]\;%{DOL}%findRole[@everyone\]\;-readmessages\]
+%{DOL}%editChannelPerms[%{DOL}%findChannel[ticket-%{DOL}%var[tickets\]\]\;%{DOL}%splitText[2\]\;+readmessages\]
+%{DOL}%var[n\;%{DOL}%sum[%{DOL}%var[n\]\;1\]\]]]
+$jsonSet[ticket;count;$sum[$json[ticket;count];1]]
+$setUserVar[systems;$jsonStringify;$botID]
+$jsonParse[$var[j]]
+$httpGet[https://edgabot.akiomae.com/AkioUsers/Seraph/jsonSearch?json=$url[encode;$jsonStringify]&search=id-3]
+$var[id;$sendEmbedMessage[$findChannel[ticket-$var[tickets]];<@$authorID>;New ticket;;Please wait patiently while a staff member assists you.
+
+**Information**
+>>> Created by: [@$username[$authorID]\](https://discord.com/users/$authorID)
+Topic: $json[$httpResult[position];name];$var[color];;;;;;;;yes]]
+$useChannel[$findChannel[ticket-$var[tickets]]]
+$addButton[no;delete;Delete Ticket;danger;no;;$var[id]]
+$addButton[no;transcript;Transcribe Ticket;secondary;no;;$var[id]]
+$endasync
+$await[a]
+$ephemeral
+Ticket created. <#$findChannel[ticket-$var[tickets]]>
+$removeAllComponents
+$endif
+$elseif[$message==other]
+$if[$or[$getVar[lang;$authorID]==es;$getVar[lang;$authorID]==]==true]
+$var[j;$json[ticket;options]]
+$var[r;$json[ticket;roles]]
+$var[count;$jsonArrayCount[ticket;roles]]
+$var[tickets;$json[ticket;count]] $var[n;0] $var[color;$json[ticket;color]]
+$async[a]
+$createChannel[ticket-$var[tickets];text]
+$eval[$repeatMessage[$var[count];%{DOL}%textSplit[%{DOL}%json[ticket\;roles\;%{DOL}%var[n\]\]\;"\]
+%{DOL}%editChannelPerms[%{DOL}%findChannel[ticket-%{DOL}%var[tickets\]\]\;%{DOL}%findRole[@everyone\]\;-readmessages\]
+%{DOL}%editChannelPerms[%{DOL}%findChannel[ticket-%{DOL}%var[tickets\]\]\;%{DOL}%splitText[2\]\;+readmessages\]
+%{DOL}%var[n\;%{DOL}%sum[%{DOL}%var[n\]\;1\]\]]]
+$jsonSet[ticket;count;$sum[$json[ticket;count];1]]
+$setUserVar[systems;$jsonStringify;$botID]
+$jsonParse[$var[j]]
+$var[id;$sendEmbedMessage[$findChannel[ticket-$var[tickets]];<@$authorID>;Nuevo ticket;;Por favor espere pacientemente mientras algún staff lo atiende.
+
+**Información**
+>>> Creado por: [@$username[$authorID]\](https://discord.com/users/$authorID)
+Tema: Otros;$var[color];;;;;;;;yes]]
+$useChannel[$findChannel[ticket-$var[tickets]]]
+$addButton[no;delete;Eliminar Ticket;danger;no;;$var[id]]
+$addButton[no;transcript;Transcribir ticket;secondary;no;;$var[id]]
+$endasync
+$await[a]
+$ephemeral
+Ticket creado. <#$findChannel[ticket-$var[tickets]]>
+$removeAllComponents
+$elseif[$getVar[lang;$authorID]==en]
+$var[j;$json[ticket;options]]
+$var[r;$json[ticket;roles]]
+$var[count;$jsonArrayCount[ticket;roles]]
+$var[tickets;$json[ticket;count]] 
+$var[n;0] 
+$var[color;$json[ticket;color]]
+$async[a]
+$createChannel[ticket-$var[tickets];text]
+$eval[$repeatMessage[$var[count];%{DOL}%textSplit[%{DOL}%json[ticket\;roles\;%{DOL}%var[n\]\]\;"\]
+%{DOL}%editChannelPerms[%{DOL}%findChannel[ticket-%{DOL}%var[tickets\]\]\;%{DOL}%findRole[@everyone\]\;-readmessages\]
+%{DOL}%editChannelPerms[%{DOL}%findChannel[ticket-%{DOL}%var[tickets\]\]\;%{DOL}%splitText[2\]\;+readmessages\]
+%{DOL}%var[n\;%{DOL}%sum[%{DOL}%var[n\]\;1\]\]]]
+$jsonSet[ticket;count;$sum[$json[ticket;count];1]]
+$setUserVar[systems;$jsonStringify;$botID]
+$jsonParse[$var[j]]
+$var[id;$sendEmbedMessage[$findChannel[ticket-$var[tickets]];<@$authorID>;New ticket;;Please wait patiently while a staff member assists you.
+
+**Information**
+>>> Created by: [@$username[$authorID]\](https://discord.com/users/$authorID)
+Topic: Other;$var[color];;;;;;;;yes]]
+$useChannel[$findChannel[ticket-$var[tickets]]]
+$addButton[no;delete;Delete Ticket;danger;no;;$var[id]]
+$addButton[no;transcript;Transcribe Ticket;secondary;no;;$var[id]]
+$endasync
+$await[a]
+$ephemeral
+Ticket created. <#$findChannel[ticket-$var[tickets]]>
+$removeAllComponents
+$endif
+$endif

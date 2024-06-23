@@ -1,0 +1,173 @@
+trigger: $onInteraction
+
+$nomention
+$jsonParse[$getUserVar[systems;$botID]]
+$color[5865f2]
+$if[$customID==editEmbed]
+$if[$or[$getVar[lang;$authorID]==es;$getVar[lang;$authorID]==]==true]
+$async[a]
+$jsonSetString[ticket;title;$input[title]]
+$jsonSetString[ticket;msg;$input[desc]]
+$if[$and[$input[color]!=;$isValidHex[$input[color]]==true]==true]
+$jsonSetString[ticket;color;$input[color]]
+$endif
+$if[$input[img]!=]
+$jsonSetString[ticket;img;$input[img]]
+$endif
+$setUserVar[systems;$jsonStringify;$botID]
+$endasync
+
+$await[a]
+$ephemeral
+$description[El sistema se ha configurado por éxito$replaceText[$replaceText[$checkCondition[$json[ticket;roles;0]==];true;, para continuar configure los roles.];false;.]]
+$elseif[$getVar[lang;$authorID]==en]
+$async[a]
+$jsonSetString[ticket;title;$input[title]]
+$jsonSetString[ticket;msg;$input[desc]]
+$if[$and[$input[color]!=;$isValidHex[$input[color]]==true]==true]
+$jsonSetString[ticket;color;$input[color]]
+$endif
+$if[$input[img]!=]
+$jsonSetString[ticket;img;$input[img]]
+$endif
+$setUserVar[systems;$jsonStringify;$botID]
+$endasync
+
+$await[a]
+$ephemeral
+$description[The system has been successfully configured$replaceText[$replaceText[$checkCondition[$json[ticket;roles;0]==];true;, to continue configure the roles.];false;.]]
+$endif
+$elseif[$customID==sendTicket-$authorID]
+$removeButtons
+$if[$or[$getVar[lang;$authorID]==es;$getVar[lang;$authorID]==]==true]
+$if[$json[ticket;roles;0]==]
+$ephemeral
+Para continuar, debes establecer mínimo un rol para poder atender a los tickets creados.]
+$else
+$title[$json[ticket;title]]
+$description[$json[ticket;msg]]
+$color[$json[ticket;color]]
+$if[$json[ticket;img]!=]
+$image[$json[ticket;img]]
+$endif
+$newSelectMenu[support;1;1]
+$addSelectMenuOption[support;Otro;other;¿Necesitas otro tipo de ayuda? Prueba usando esta opción.]
+$var[array;$jsonArrayCount[ticket;options]]
+$var[j;$json[ticket;options]]
+$jsonParse[$var[j]]
+$var[n;0]
+$eval[$repeatMessage[$var[array];%{DOL}%addSelectMenuOption[support\;%{DOL}%json[%{DOL}%var[n\]\;name\]\;%{DOL}%json[%{DOL}%var[n\]\;id\]\;%{DOL}%json[%{DOL}%var[n\]\;desc\]\]
+%{DOL}%var[n\;%{DOL}%sum[%{DOL}%var[n\]\;1\]\]]]
+$endif
+$elseif[$getVar[lang;$authorID]==en]
+$ephemeral
+$if[$json[ticket;roles;0]==]
+To continue, you must set at least one role to handle created tickets.]
+$ephemeral
+$else
+$title[$json[ticket;title]]
+$description[$json[ticket;msg]]
+$color[$json[ticket;color]]
+$if[$json[ticket;img]!=]
+$image[$json[ticket;img]]
+$endif
+$newSelectMenu[support;1;1]
+$addSelectMenuOption[support;Other;other;Need another type of help? Try using this option.]
+$var[array;$jsonArrayCount[ticket;options]]
+$var[j;$json[ticket;options]]
+$jsonParse[$var[j]]
+$var[n;0]
+$eval[$repeatMessage[$var[array];%{DOL}%addSelectMenuOption[support\;%{DOL}%json[%{DOL}%var[n\]\;name\]\;%{DOL}%json[%{DOL}%var[n\]\;id\]\;%{DOL}%json[%{DOL}%var[n\]\;desc\]\]
+%{DOL}%var[n\;%{DOL}%sum[%{DOL}%var[n\]\;1\]\]]]
+$endif
+$endif
+$elseif[$customID==editRoles]
+$ephemeral
+$if[$or[$getVar[lang;$authorID]==es;$getVar[lang;$authorID]==]==true]
+$textSplit[$input[roles];, ]
+$jsonUnset[ticket;roles]
+$jsonArray[ticket;roles]
+$setUserVar[systems;$jsonStringify;$botID]
+$var[n;$getTextSplitLength] $var[split;1]
+$eval[$repeatMessage[$var[n];%{DOL}%jsonArrayUnshift[ticket\;roles\;"%{DOL}%splitText[%{DOL}%var[split\]\]"\]
+%{DOL}%var[split\;%{DOL}%sum[%{DOL}%var[split\]\;1\]\]]]
+$jsonSet[ticket;active;true]
+$setUserVar[systems;$jsonStringify;$botID]
+$description[Roles establecidos.]
+$elseif[$getVar[lang;$authorID]==en]
+$textSplit[$input[roles];, ]]
+$jsonUnset[ticket;roles]
+$jsonArray[ticket;roles]
+$setUserVar[systems;$jsonStringify;$botID]
+$var[n;$getTextSplitLength] $var[split;1]
+$eval[$repeatMessage[$var[n];%{DOL}%jsonArrayUnshift[ticket\;roles\;"%{DOL}%splitText[%{DOL}%var[split\]\]"\]
+%{DOL}%var[split\;%{DOL]%sum[%{DOL]%var[split\]\;1\]\]]]
+  $jsonSet[ticket;active;true]
+$setUserVar[systems;$jsonStringify;$botID]
+$description[Roles established.]
+$endif
+$elseif[$customID==modal1-$authorID]
+$if[$or[$getVar[lang;$authorID]==es;$getVar[lang;$authorID]==]==true]
+$newModal[option1;Configuración de panel 1.]
+$addTextInput[name;paragraph;Nombre;7;40;yes]
+$addTextInput[desc;paragraph;Descripción;7;80;yes]
+$elseif[$getVar[lang;$authorID]==en]
+$newModal[option1;Panel Settings 1.]
+$addTextInput[name;paragraph;Name;7;40;yes]
+$addTextInput[desc;paragraph;Description;7;80;yes]
+$endif
+$elseif[$customID==modal2-$authorID]
+$if[$or[$getVar[lang;$authorID]==es;$getVar[lang;$authorID]==]==true]
+$newModal[option2;Configuración de panel 2.]
+$addTextInput[name;paragraph;Nombre;7;40;yes]
+$addTextInput[desc;paragraph;Descripción;7;80;yes]
+$elseif[$getVar[lang;$authorID]==en]
+$newModal[option2;Panel Settings 2.]
+$addTextInput[name;paragraph;Name;7;40;yes]
+$addTextInput[desc;paragraph;Description;7;80;yes]
+$endif
+$elseif[$customID==modal3-$authorID]
+$if[$or[$getVar[lang;$authorID]==es;$getVar[lang;$authorID]==]==true]
+$newModal[option3;Configuración de panel 3.]
+$addTextInput[name;paragraph;Nombre;7;40;yes]
+$addTextInput[desc;paragraph;Descripción;7;80;yes]
+$elseif[$getVar[lang;$authorID]==en]
+$newModal[option3;Panel Settings 3.]
+$addTextInput[name;paragraph;Name;7;40;yes]
+$addTextInput[desc;paragraph;Description;7;80;yes]
+$endif
+$elseif[$customID==restart-$authorID]
+$if[$or[$getVar[lang;$authorID]==es;$getVar[lang;$authorID]==]==true]
+$async[a]
+$jsonUnset[ticket;options]
+$jsonArray[ticket;options]
+$setUserVar[systems;$jsonStringify;$botID]
+$removeButtons[$messageID]
+$addButton[no;modal1-$authorID;Modal 1;primary;no;;$messageID]
+$addButton[no;modal2-$authorID;Modal 2;primary;no;;$messageID]
+$addButton[no;modal3-$authorID;Modal 3;primary;no;;$messageID]
+$addButton[no;back-$authorID;Retroceder;secondary;no;;$messageID]
+$addButton[no;restart-$authorID;⟲ Reiniciar;danger;no;;$messageID]
+$endasync
+$await[a]
+$ephemeral
+$description[Opciones reiniciadas.]
+$removeButtons
+$elseif[$getVar[lang;$authorID]==en]
+$async[a]
+$jsonUnset[ticket;options]
+$jsonArray[ticket;options]
+$setUserVar[systems;$jsonStringify;$botID]
+$removeButtons[$messageID]
+$addButton[no;modal1-$authorID;Modal 1;primary;no;;$messageID]
+$addButton[no;modal2-$authorID;Modal 2;primary;no;;$messageID]
+$addButton[no;modal3-$authorID;Modal 3;primary;no;;$messageID]
+$addButton[no;back-$authorID;Retroceder;secondary;no;;$messageID]
+$addButton[no;restart-$authorID;⟲ Reiniciar;danger;no;;$messageID]
+$endasync
+$await[a]
+$ephemeral
+$description[Options reset.]
+$removeButtons
+$endif
+$endif

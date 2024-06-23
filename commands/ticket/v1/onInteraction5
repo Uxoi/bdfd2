@@ -1,0 +1,38 @@
+trigger: $onInteraction
+
+$nomention
+$var[placeholder_token;key de tu bot]
+$if[$customID==delete]
+$color[5865f2]
+$jsonParse[$getUserVar[systems;$botID]]
+$if[$or[$getVar[lang;$authorID]==es;$getVar[lang;$authorID]==]==true]
+$async[a]
+$var[id;$sendEmbedMessage[$channelID;;Procesando;;El ticket se cerrará en <t:$sum[$getTimestamp;60]:R>.;$json[ticket;color];;;Pedido por $nickname[$authorID] ($username);;;;;yes]]
+$endasync
+$await[a]
+$replyIn[60s]
+$deleteChannels[$channelID]
+$elseif[$getVar[lang;$authorID]==en]
+$async[a]
+$var[id;$sendEmbedMessage[$channelID;;Processing;;The ticket will be closed in <t:$sum[$getTimestamp;60]:R>.;$json[ticket;color];;;Requested by $nickname[$authorID] ($username);;;;;yes]]
+$endasync
+$await[a]
+$replyIn[60s]
+$deleteChannels[$channelID]
+$endif
+$elseif[$customID==transcript]
+$onlyPerms[managemessages;]
+$color[5865f2]
+$if[$or[$getVar[lang;$authorID]==es;$getVar[lang;$authorID]==]==true]
+$async[a]
+$httpGet[https://edgabot.akiomae.com/AkiomaeCodes/Transcript/enlace.php?url=$url[encode;https://edgabot.akiomae.com/AkiomaeCodes/Transcript/?TokenBot=$var[placeholder_token]&channelID=$channelID]]
+$var[id;$sendEmbedMessage[$channelID;<@$authorID>;Transcrito;;El ticket se ha transcribido de forma exitosa.;2ecc71;;;;;;;;yes]]
+$addButton[no;$httpResult[download_link];Ver;link;no;;$var[id]]
+$endasync
+$elseif[$getVar[lang;$authorID]==en]
+$httpGet[https://edgabot.akiomae.com/AkiomaeCodes/Transcript/link.php?url=$url[encode;https://edgabot.akiomae.com/AkiomaeCodes/Transcript/?TokenBot=$var[placeholder_token]&channelID=$channelID]]
+$var[id;$sendEmbedMessage[$channelID;<@$authorID>;Transcribed;;The ticket has been successfully transcribed.;2ecc71;;;;;;;;yes]]
+$addButton[no;$httpResult[download_link];View;link;no;;$var[id]]
+$endasync
+$endif
+$endif

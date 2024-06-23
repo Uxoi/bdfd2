@@ -1,0 +1,86 @@
+trigger: $onInteraction
+
+$nomention
+$jsonParse[$getUserVar[systems;$botID]]
+$if[$customID==option1]
+$color[5865f2]
+$if[$or[$getVar[lang;$authorID]==es;$getVar[lang;$authorID]==]==true]
+$if[$jsonArrayCount[ticket;options]>=3]
+$description[3 modals maximum.]
+$endif
+$async[a]
+$jsonArrayUnshift[ticket;options;{"name":"$input[name]","desc":"$input[desc]","id":"id-1"}]
+$setUserVar[systems;$jsonStringify;$botID]
+$endasync
+$await[a]
+$description[Selector 1 activado.]
+$ephemeral
+$editButton[modal1-$authorID;Modal 1;primary;yes;;$messageID]
+$elseif[$getVar[lang;$authorID]==en]
+$if[$jsonArrayCount[ticket;options]>=3]
+$description[3 modals maximum.]
+$endif
+$async[a]
+$jsonArrayUnshift[ticket;options;{"name":"$input[name]","desc":"$input[desc]","id":"id-1"}]
+$setUserVar[systems;$jsonStringify;$botID]
+$endasync
+$await[a]
+$description[Selector 1 activated.]
+$editButton[modal1-$authorID;Modal 1;primary;yes;;$messageID]
+$ephemeral
+$endif
+$elseif[$customID==option2]
+$color[5865f2]
+$if[$or[$getVar[lang;$authorID]==es;$getVar[lang;$authorID]==]==true]
+$if[$jsonArrayCount[ticket;options]>=3]
+$description[3 modals maximum.]
+$endif
+$async[a]
+$jsonArrayUnshift[ticket;options;{"name":"$input[name]","desc":"$input[desc]","id":"id-2"}]
+$setUserVar[systems;$jsonStringify;$botID]
+$endasync
+$await[a]
+$description[Selector 2 activado.]
+$editButton[modal2-$authorID;Modal 2;primary;yes;;$messageID]
+$ephemeral
+$elseif[$getVar[lang;$authorID]==en]
+$if[$jsonArrayCount[ticket;options]>=3]
+$description[3 modals maximum.]
+$endif
+$async[a]
+$jsonArrayUnshift[ticket;options;{"name":"$input[name]","desc":"$input[desc]","id":"id-2"}]
+$setUserVar[systems;$jsonStringify;$botID]
+$endasync
+$await[a]
+$description[Selector 2 activated.]
+$editButton[modal2-$authorID;Modal 2;primary;yes;;$messageID]
+$ephemeral
+$endif
+$elseif[$customID==option3]
+$color[5865f2]
+$if[$or[$getVar[lang;$authorID]==es;$getVar[lang;$authorID]==]==true]
+$if[$jsonArrayCount[ticket;options]>=3]
+$description[3 modals maximum.]
+$endif
+$async[a]
+$jsonArrayUnshift[ticket;options;{"name":"$input[name]","desc":"$input[desc]","id":"id-3"}]
+$setUserVar[systems;$jsonStringify;$botID]
+$endasync
+$await[a]
+$description[Selector 3 activado.]
+$editButton[modal3-$authorID;Modal 3;primary;yes;;$messageID]
+$ephemeral
+$elseif[$getVar[lang;$authorID]==en]
+$if[$jsonArrayCount[ticket;options]>=3]
+$description[3 modals maximum.]
+$endif
+$async[a]
+$jsonArrayUnshift[ticket;options;{"name":"$input[name]","desc":"$input[desc]","id":"id-3"}]
+$setUserVar[systems;$jsonStringify;$botID]
+$endasync
+$await[a]
+$description[Selector 3 activated.]
+$editButton[modal3-$authorID;Modal 3;primary;yes;;$messageID]
+$ephemeral
+$endif
+$endif
