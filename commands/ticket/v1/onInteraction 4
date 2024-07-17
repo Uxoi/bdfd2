@@ -1,3 +1,5 @@
+trigger: $onInteraction[support]
+
 $nomention
 $jsonParse[$getUserVar[systems;$botID]]
 $if[$message==id-1]
